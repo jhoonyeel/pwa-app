@@ -21,8 +21,9 @@ const PetForm = ({ petInfo, setPetInfo, onSubmit }: PetFormProps) => {
       <h2>반려동물 정보 입력</h2>
 
       <FormGroup>
-        <Label>반려동물 이름</Label>
+        <Label htmlFor="pet-name">반려동물 이름</Label>
         <Input
+          id="pet-name"
           type="text"
           value={petInfo.name}
           maxLength={20}
@@ -32,8 +33,9 @@ const PetForm = ({ petInfo, setPetInfo, onSubmit }: PetFormProps) => {
       </FormGroup>
 
       <FormGroup>
-        <Label>반려동물 종류</Label>
+        <Label htmlFor="pet-type">반려동물 종류</Label>
         <Select
+          id="pet-type"
           value={petInfo.type}
           onChange={(e) => setPetInfo({ ...petInfo, type: e.target.value })}
         >
@@ -46,8 +48,9 @@ const PetForm = ({ petInfo, setPetInfo, onSubmit }: PetFormProps) => {
       </FormGroup>
 
       <FormGroup>
-        <Label>반려동물 성별</Label>
+        <Label htmlFor="pet-gender">반려동물 성별</Label>
         <Select
+          id="pet-gender"
           value={petInfo.gender}
           onChange={(e) => setPetInfo({ ...petInfo, gender: e.target.value })}
         >
@@ -60,8 +63,9 @@ const PetForm = ({ petInfo, setPetInfo, onSubmit }: PetFormProps) => {
       </FormGroup>
 
       <FormGroup>
-        <Label>반려동물 생일</Label>
+        <Label htmlFor="pet-birth">반려동물 생일</Label>
         <Input
+          id="pet-birth"
           type="date"
           value={petInfo.birth}
           onChange={(e) => setPetInfo({ ...petInfo, birth: e.target.value })}
