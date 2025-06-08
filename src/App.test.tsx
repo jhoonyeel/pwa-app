@@ -1,5 +1,5 @@
 // src/App.test.tsx
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, test } from 'vitest';
 import App from './App';
@@ -37,11 +37,13 @@ describe('App', () => {
     const submitButton = screen.getByRole('button', { name: '제출' });
     await user.click(submitButton);
 
-    // 결과 화면 확인
-    expect(screen.getByText('반려동물 정보')).toBeInTheDocument();
-    expect(screen.getByText('초코')).toBeInTheDocument();
-    expect(screen.getByText('고양이')).toBeInTheDocument();
-    expect(screen.getByText('여아')).toBeInTheDocument();
-    expect(screen.getByText('2020-01-01')).toBeInTheDocument();
+    // 결과 화면 확인 (GET 요청 이후 업데이트 되므로 waitFor 사용)
+    await waitFor(() => {
+      expect(screen.getByText('반려동물 정보')).toBeInTheDocument();
+      expect(screen.getByText('초코')).toBeInTheDocument();
+      expect(screen.getByText('고양이')).toBeInTheDocument();
+      expect(screen.getByText('여아')).toBeInTheDocument();
+      expect(screen.getByText('2020-01-01')).toBeInTheDocument();
+    });
   });
 });

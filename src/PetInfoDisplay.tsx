@@ -1,11 +1,28 @@
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
 import type { PetInfo } from './types';
 
-type PetInfoDisplayProps = {
-  petInfo: PetInfo;
-};
+const PetInfoDisplay = () => {
+  const [petInfo, setPetInfo] = useState<PetInfo | null>(null);
 
-const PetInfoDisplay = ({ petInfo }: PetInfoDisplayProps) => {
+  useEffect(() => {
+    const fetchPetInfo = async () => {
+      const res = await fetch('/pet');
+      if (res.ok) {
+        const data = (await res.json()) as PetInfo;
+        setPetInfo(data);
+      } else {
+        console.error('Failed to fetch pet info');
+      }
+    };
+
+    fetchPetInfo();
+  }, []);
+
+  if (!petInfo) {
+    return <p>로딩 중...</p>;
+  }
+
   return (
     <Wrapper>
       <h2>반려동물 정보</h2>
