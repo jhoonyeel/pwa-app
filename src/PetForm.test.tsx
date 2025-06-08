@@ -31,7 +31,7 @@ describe('PetForm', () => {
     await user.type(nameInput, '초코');
 
     // 입력 후 value가 반영되었는지 확인
-    expect(nameInput).toHaveValue();
+    expect(nameInput).toHaveValue('초코');
   });
 
   test('제출 버튼 클릭 시 onSubmit이 호출된다', async () => {

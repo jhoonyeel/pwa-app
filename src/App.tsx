@@ -15,14 +15,22 @@ const App = () => {
   const [petInfo, setPetInfo] = useState<PetInfo>(INITIAL_PET_INFO);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    // 1️⃣ POST /pet 요청
+    await fetch('/pet', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(petInfo),
+    });
+
+    // 2️⃣ submitted 상태 변경
     setSubmitted(true);
   };
 
   return (
     <Container>
       {submitted ? (
-        <PetInfoDisplay petInfo={petInfo} />
+        <PetInfoDisplay />
       ) : (
         <PetForm petInfo={petInfo} setPetInfo={setPetInfo} onSubmit={handleSubmit} />
       )}
