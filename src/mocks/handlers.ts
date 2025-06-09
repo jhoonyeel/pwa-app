@@ -2,7 +2,7 @@
 import { http, HttpResponse } from 'msw';
 import type { PetInfo } from '../types';
 
-const isDev = import.meta.env.DEV || import.meta.env.VITE_USE_MSW === 'true';
+const isMSW = import.meta.env.DEV || import.meta.env.VITE_USE_MSW === 'true';
 const petData: PetInfo[] = [];
 
 const devHandlers = [
@@ -57,4 +57,4 @@ const prodHandlers = [
   }),
 ];
 
-export const handlers = isDev ? devHandlers : prodHandlers;
+export const handlers = isMSW ? devHandlers : prodHandlers;
